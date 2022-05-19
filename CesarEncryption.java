@@ -1,12 +1,8 @@
 import java.util.Scanner;
-
-
-
 /**
  * Cesar Entschlüsselung
  */
-
-public class Cesar {
+public class CesarEncryption {
     public static int keyIn;
     public static String strAbc = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
     public static void main(String[] args) {
@@ -14,26 +10,22 @@ public class Cesar {
         
         //Read letters in an split them in parts
         String inputverschluesseln = inputReader();
-        //inputverschluesseln = inputverschluesseln.replace(" ", "");
         char[] inputVerschluesseltChar = inputverschluesseln.toCharArray();
 
+        //request for encryotion key
         Scanner schluesselINput = new Scanner(System.in);
-        System.out.println("Schluessel bitte eingeben");
+        System.out.println("Type in your key");
         int schluessel = schluesselINput.nextInt();
         schluesselINput.close();
 
         verschluesseln(inputVerschluesseltChar, schluessel);
-
-        System.out.println("__________");        
-        
-        System.out.println("Versuch entschlüsseln");
    
         System.out.println("_____Program-Ende______");
     }
 
     //Method to read a String in and spliting it to parts
     public static String inputReader(){
-        System.out.println("Bitte gebe etwas ein");
+        System.out.println("Type in your message");
         String reader = System.console().readLine();  
         reader.replace(" ", "");    
         String input = reader.toLowerCase();
@@ -41,22 +33,15 @@ public class Cesar {
         return input;        
     }
 
-    //Method to print an array to console
-    public static void printArrayToConsol(char[] printArray){
-
-        for(int i = 0; i < printArray.length; i++)
-        {
-            System.out.println(printArray[i]);
-        }
-    }
-
+    //Mehtod to encrypt message
     public static void verschluesseln(char[] input, int schluessel){
-        //ABC String nach Zeichen trennen und in CharArray umwandeln
+        //Separate ABC string by character and convert to CharArray
         String str = strAbc.replace(",", "");
         char[] abcChar = str.toCharArray();
         char[] verschluesselt = new char[input.length];
         int postion = 0;
 
+        //added method with modulu
         for(int i = 0; i < input.length; i++){
             for(int j = 0; j < abcChar.length; j++){
                 if(input[i] == abcChar[j]){
@@ -69,13 +54,13 @@ public class Cesar {
                 }
             }
         }
-
+        System.out.print("Encrypted message: ");
         System.out.println(verschluesselt);
         
     }
-
-    // Methode zum entschlüsseln
-    public static void entschluesseln(char[] verschluesseltArray){
-        
-    }
 }
+
+/*Thigs to do
+- erro catch type in message --> numbers check
+- erro catch type in key --> letter check
+*/
