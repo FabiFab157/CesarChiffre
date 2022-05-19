@@ -4,7 +4,7 @@ import java.util.List;
 //import java.util.ArrayList;
 //import java.util.List;
 
-public class versuch {
+public class CesarDecryption {
     public static void main(String[] args) {
         char[] abcArray = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
         char[] pwArray = {'m','h','i','p',};
