@@ -3,42 +3,45 @@ import java.util.Scanner;
  * Cesar Entschlüsselung
  */
 public class CesarEncryption {
-    public static int keyIn;
-    public static String strAbc = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
+
+    public static char[] pwArray;
+    private static String strAbc = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
     public static void main(String[] args) {
         System.out.println("_____Program-Start____");
         
-        //Read letters in an split them in parts
-        String inputverschluesseln = inputReader();
-        char[] inputVerschluesseltChar = inputverschluesseln.toCharArray();
-
-        //request for encryotion key
-        Scanner schluesselINput = new Scanner(System.in);
-        System.out.println("Type in your key");
-        int schluessel = schluesselINput.nextInt();
-        schluesselINput.close();
-
-        verschluesseln(inputVerschluesseltChar, schluessel);
+        encrypt(inputReader(), encryptKey());
    
         System.out.println("_____Program-Ende______");
     }
 
     //Method to read a String in and spliting it to parts
-    public static String inputReader(){
+    private static char[] inputReader(){
+        //Read letters in an split them in parts
         System.out.println("Type in your message");
         String reader = System.console().readLine();  
         reader.replace(" ", "");    
         String input = reader.toLowerCase();
+        pwArray = input.toCharArray();
 
-        return input;        
+        return pwArray;        
+    }
+
+    private static int encryptKey()
+    {
+        //request for encryotion key
+        Scanner keyInput = new Scanner(System.in);
+        System.out.println("Type in your key");
+        int key = keyInput.nextInt();
+        keyInput.close();
+        return key;
     }
 
     //Mehtod to encrypt message
-    public static void verschluesseln(char[] input, int schluessel){
+    private static void encrypt(char[] input, int schluessel){
         //Separate ABC string by character and convert to CharArray
         String str = strAbc.replace(",", "");
         char[] abcChar = str.toCharArray();
-        char[] verschluesselt = new char[input.length];
+        char[] encryptText = new char[input.length];
         int postion = 0;
 
         //added method with modulu
@@ -50,13 +53,12 @@ public class CesarEncryption {
                     {
                         postion = postion % abcChar.length;
                     }
-                    verschluesselt[i] = abcChar[postion];
+                    encryptText[i] = abcChar[postion];
                 }
             }
         }
         System.out.print("Encrypted message: ");
-        System.out.println(verschluesselt);
-        
+        System.out.println(encryptText);   
     }
 }
 
