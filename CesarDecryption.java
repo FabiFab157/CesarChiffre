@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CesarDecryption {
     private static char[] abcArray = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    private static char[] pwArray1;
+    private static char[] pwArray;
     private static List<String> pwDecryptedList = new ArrayList<String>();
     private static int key = 0;
     private static int positionABC = 0;
@@ -22,25 +22,25 @@ public class CesarDecryption {
     }
 
     //method to read in the encrypted text 
-    public static char[] inputReader(){
+    private static char[] inputReader(){
         System.out.println("Type in your encrypted text");
         String reader = System.console().readLine();
         reader.replace(" ", "");
         String input = reader.toLowerCase();
-        pwArray1 = input.toCharArray();
+        pwArray = input.toCharArray();
         
-        return pwArray1;
+        return pwArray;
     }
 
     //method to decrypt text
-    public static void decrypt(char[] encryptedText){
+    private static void decrypt(char[] encryptedText){
          //StringBuilder helps to build a string letter by letter
          StringBuilder pwDecrypted = new StringBuilder(); 
         while(key < 26)
         {
-            for(int i = 0; i < pwArray1.length; i++)
+            for(int i = 0; i < pwArray.length; i++)
             {
-                char pwBuchstabe = pwArray1[i];
+                char pwBuchstabe = pwArray[i];
                 for(int j = 0; j < abcArray.length; j++)
                 {               
                     char abcBuchstabe = abcArray[j];
@@ -65,8 +65,8 @@ public class CesarDecryption {
     }
     
     //print decrypted List on consol
-    public static void decryptList(List<String>list){
-        System.out.println("Passwort Länge " + pwArray1.length);
+    private static void decryptList(List<String>list){
+        System.out.println("Passwort Länge " + pwArray.length);
         int count = 0;
         for (String string : pwDecryptedList) {
             System.out.println("Nr. " + count + ": " + string);
