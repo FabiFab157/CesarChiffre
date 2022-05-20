@@ -16,12 +16,26 @@ public class CesarEncryption {
 
     //Method to read a String in and spliting it to parts
     private static char[] inputReader(){
-        //Read letters in an split them in parts
+        //Read letters in an split them in parts 
         System.out.println("Type in your message");
-        String reader = System.console().readLine();  
+        Scanner readIn = new Scanner(System.in);
+        
+        
+            if(readIn.hasNextDouble()){
+                System.out.println("Please type in only letters");
+                System.out.println("You have typed in: " + readIn.nextInt());
+            } else {
+                String reader = readIn.toString();
+                reader.replace(" ", "");
+                reader = reader.toLowerCase();
+                pwArray = reader.toCharArray();
+            }
+            readIn.close();
+        
+        /* String reader = System.console().readLine();  
         reader.replace(" ", "");    
         String input = reader.toLowerCase();
-        pwArray = input.toCharArray();
+        pwArray = input.toCharArray(); */
 
         return pwArray;        
     }
