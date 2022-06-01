@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
@@ -39,20 +40,20 @@ public class CesarEncryption {
 
     private static int encryptKey()
     {
-        int key;
+        int key = 0;
         if(pwArray == null)
         {
             return key = 0;
             
         }else{
             //request for encryotion key
-            Scanner keyInput = new Scanner(System.in);
-            System.out.println("Type in your key");
-            key = keyInput.nextInt();
-            keyInput.close();
-            if(Character.isDigit(key) == true){
+            try{
+                Scanner keyInput = new Scanner(System.in);
+                System.out.println("Type in your key");
+                key = keyInput.nextInt();
+                keyInput.close();
+            }catch(NoSuchElementException e){
                 System.out.println("WRONG TYPING ONLY NUMBERS ARE ALLOWED!");
-                System.out.println("You have typed: " +  key);
                 return key = 0;
             }
             return key;
