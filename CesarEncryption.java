@@ -9,6 +9,7 @@ public class CesarEncryption {
 
     public static char[] pwArray;
     private static String strAbc = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
+    private static int key = 0;
     public static void main(String[] args) {
         System.out.println("_____Program-Start____");
         
@@ -40,20 +41,19 @@ public class CesarEncryption {
 
     private static int encryptKey()
     {
-        int key = 0;
         if(pwArray == null)
         {
             return key = 0;
             
         }else{
-            //request for encryotion key
+            //request for encryotion key and catch a wrong typing
             try{
                 Scanner keyInput = new Scanner(System.in);
                 System.out.println("Type in your key");
                 key = keyInput.nextInt();
                 keyInput.close();
             }catch(NoSuchElementException e){
-                System.out.println("WRONG TYPING ONLY NUMBERS ARE ALLOWED!");
+                System.out.println("WRONG TYPING, ONLY NUMBERS ARE ALLOWED!");
                 return key = 0;
             }
             return key;
@@ -62,7 +62,7 @@ public class CesarEncryption {
 
     //Mehtod to encrypt message
     private static void encrypt(char[] input, int schluessel){
-        if(pwArray != null)
+        if(pwArray != null && key != 0)
         {
             //Separate ABC string by character and convert to CharArray
             String str = strAbc.replace(",", "");
@@ -85,9 +85,10 @@ public class CesarEncryption {
             }
             System.out.print("Encrypted message: ");
             System.out.println(encryptText);  
-        }else{
-            System.out.println("Program is closed");
-        }  
+        }
+        if(key == 0){
+            System.out.println("Key bigger than 0 is required");
+        }
     }
 
     //Methode to verify if a number or char has been typed in
