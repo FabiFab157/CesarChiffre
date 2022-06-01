@@ -22,7 +22,8 @@ public class CesarEncryption {
     private static char[] inputReader(){
         //variable to stop loop when input of user is a number or special character
         boolean goOn = true;
-        while(goOn == true){
+        while(goOn == true)
+        {
                //Read letters in an split them in parts
                 System.out.println("Type in your message");
                 String reader = System.console().readLine();  
@@ -30,7 +31,8 @@ public class CesarEncryption {
                 String input = reader.toLowerCase();
 
                 pwArray = input.toCharArray();
-                if(isNumber(pwArray) == false){
+                if(isNumber(pwArray) == false)
+                {
                     goOn = false;
                     return pwArray = null;   
                 }
