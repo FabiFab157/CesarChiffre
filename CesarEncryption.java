@@ -28,7 +28,7 @@ public class CesarEncryption {
                 String input = reader.toLowerCase();
 
                 pwArray = input.toCharArray();
-                if(isNumer(pwArray) == true){
+                if(isNumber(pwArray) == false){
                     goOn = false;
                     return pwArray = null;   
                 }
@@ -50,6 +50,11 @@ public class CesarEncryption {
             System.out.println("Type in your key");
             key = keyInput.nextInt();
             keyInput.close();
+            if(Character.isDigit(key) == true){
+                System.out.println("WRONG TYPING ONLY NUMBERS ARE ALLOWED!");
+                System.out.println("You have typed: " +  key);
+                return key = 0;
+            }
             return key;
         }         
     }
@@ -85,23 +90,19 @@ public class CesarEncryption {
     }
 
     //Methode to verify if a number or char has been typed in
-    private static boolean isNumer(char[] inputArray)
+    private static boolean isNumber(char[] inputArray)
     {
-        char[] wrongTypes = {'1','2','3','4','5','6','7','8','9','.',',',';','!'};
         for(int i = 0; i < inputArray.length; i++){
-            for(int j = 0; j < wrongTypes.length; j++){
-                if(inputArray[i] == wrongTypes[j]){
-                    System.out.println("WRONG TYPING number or special character ARE NOT ALLOWED!");
-                    System.out.println("You have typed: " +  inputArray[i]);
-                    return true;
-                }
+            if(Character.isLetter(inputArray[i]) == false){
+                System.out.println("WRONG TYPING number or special character ARE NOT ALLOWED!");
+                System.out.println("You have typed: " +  inputArray[i]);
+                return false;
             }
         }
-        return false;
+        return true;
     }
-    
 }
 
-/*Thigs to do
+/*Things to do
 - erro catch type in message --> numbers check
 */
