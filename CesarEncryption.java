@@ -55,7 +55,7 @@ public class CesarEncryption {
                 key = keyInput.nextInt();
                 keyInput.close();
             }catch(NoSuchElementException e){
-                System.out.println("WRONG TYPING, ONLY NUMBERS ARE ALLOWED!");
+                System.out.println("WRONG KEY TYPING, ONLY NUMBERS ARE ALLOWED FOR KEY!");
                 return key = 0;
             }
             return key;
@@ -88,9 +88,9 @@ public class CesarEncryption {
             System.out.print("Encrypted message: ");
             System.out.println(encryptText);  
         }
-        if(key == 0){
+       /*  if(key == 0){
             System.out.println("Key bigger than 0 is required");
-        }
+        } */
     }
 
     //Methode to verify if a number or char has been typed in
