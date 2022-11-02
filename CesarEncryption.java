@@ -103,7 +103,3 @@ public class CesarEncryption {
         return true;
     }
 }
-
-/*Things to do
-- erro catch type in message --> numbers check
-*/
