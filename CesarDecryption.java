@@ -23,12 +23,23 @@ public class CesarDecryption {
 
     //method to read in the encrypted text 
     private static char[] inputReader(){
-        System.out.println("Type in your encrypted text");
-        String reader = System.console().readLine();
-        reader.replace(" ", "");
-        String input = reader.toLowerCase();
-        pwArray = input.toCharArray();
-        
+        boolean goOn = true;
+        while(goOn == true)
+        {
+            //Read letters in and split them in parts
+            System.out.println("Type in your encrypted text");
+            String reader = System.console().readLine();
+            reader.replace(" ", "");
+            String input = reader.toLowerCase();
+
+            pwArray = input.toCharArray();
+            if(isNumber(pwArray) == false) //check if number contains
+            {
+                goOn = false;
+                return pwArray = null;
+            }
+            goOn = false; //stops the loop
+        }      
         return pwArray;
     }
 
@@ -73,5 +84,17 @@ public class CesarDecryption {
             count++;
         }
     }
-}
-                
+
+    //Methode to verify if a number or char has been typed in
+    private static boolean isNumber(char[] pwArray)
+    {
+        for(int i = 0; i < pwArray.length; i++){
+            if(Character.isLetter(pwArray[i]) == false){
+                System.out.println("WRONG TYPING number or special character ARE NOT ALLOWED!");
+                System.out.println("You have typed: " +  pwArray[i]);
+                return false;
+            }
+        }
+        return true;
+    }
+}                

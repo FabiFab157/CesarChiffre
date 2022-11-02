@@ -24,14 +24,14 @@ public class CesarEncryption {
         boolean goOn = true;
         while(goOn == true)
         {
-               //Read letters in an split them in parts
+               //Read letters in and split them in parts
                 System.out.println("Type in your message");
                 String reader = System.console().readLine();  
                 reader.replace(" ", "");    
                 String input = reader.toLowerCase();
 
                 pwArray = input.toCharArray();
-                if(isNumber(pwArray) == false)
+                if(isNumber(pwArray) == false) //check if number contains
                 {
                     goOn = false;
                     return pwArray = null;   
