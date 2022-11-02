@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
@@ -8,6 +9,7 @@ public class CesarEncryption {
 
     public static char[] pwArray;
     private static String strAbc = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
+    private static int key = 0;
     public static void main(String[] args) {
         System.out.println("_____Program-Start____");
         
@@ -20,15 +22,17 @@ public class CesarEncryption {
     private static char[] inputReader(){
         //variable to stop loop when input of user is a number or special character
         boolean goOn = true;
-        while(goOn == true){
-               //Read letters in an split them in parts
+        while(goOn == true)
+        {
+               //Read letters in and split them in parts
                 System.out.println("Type in your message");
                 String reader = System.console().readLine();  
                 reader.replace(" ", "");    
                 String input = reader.toLowerCase();
 
                 pwArray = input.toCharArray();
-                if(isNumer(pwArray) == true){
+                if(isNumber(pwArray) == false) //check if number contains
+                {
                     goOn = false;
                     return pwArray = null;   
                 }
@@ -39,24 +43,28 @@ public class CesarEncryption {
 
     private static int encryptKey()
     {
-        int key;
         if(pwArray == null)
         {
             return key = 0;
             
         }else{
-            //request for encryotion key
-            Scanner keyInput = new Scanner(System.in);
-            System.out.println("Type in your key");
-            key = keyInput.nextInt();
-            keyInput.close();
+            //request for encryotion key and catch a wrong typing
+            try{
+                Scanner keyInput = new Scanner(System.in);
+                System.out.println("Type in your key");
+                key = keyInput.nextInt();
+                keyInput.close();
+            }catch(NoSuchElementException e){
+                System.out.println("WRONG KEY TYPING, ONLY NUMBERS ARE ALLOWED FOR KEY!");
+                return key = 0;
+            }
             return key;
         }         
     }
 
     //Mehtod to encrypt message
     private static void encrypt(char[] input, int schluessel){
-        if(pwArray != null)
+        if(pwArray != null && key != 0)
         {
             //Separate ABC string by character and convert to CharArray
             String str = strAbc.replace(",", "");
@@ -79,29 +87,23 @@ public class CesarEncryption {
             }
             System.out.print("Encrypted message: ");
             System.out.println(encryptText);  
-        }else{
-            System.out.println("Program is closed");
-        }  
+        }
     }
 
     //Methode to verify if a number or char has been typed in
-    private static boolean isNumer(char[] inputArray)
+    private static boolean isNumber(char[] inputArray)
     {
-        char[] wrongTypes = {'1','2','3','4','5','6','7','8','9','.',',',';','!'};
         for(int i = 0; i < inputArray.length; i++){
-            for(int j = 0; j < wrongTypes.length; j++){
-                if(inputArray[i] == wrongTypes[j]){
-                    System.out.println("WRONG TYPING number or special character ARE NOT ALLOWED!");
-                    System.out.println("You have typed: " +  inputArray[i]);
-                    return true;
-                }
+            if(Character.isLetter(inputArray[i]) == false){
+                System.out.println("WRONG TYPING number or special character ARE NOT ALLOWED!");
+                System.out.println("You have typed: " +  inputArray[i]);
+                return false;
             }
         }
-        return false;
+        return true;
     }
-    
 }
 
-/*Thigs to do
+/*Things to do
 - erro catch type in message --> numbers check
 */
